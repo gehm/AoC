@@ -11,7 +11,7 @@ my @list;
 my @list2;
 # 172930-683082
 foreach (my $i=172930; $i < 683082; $i++) {
-#foreach (my $i=172930; $i < 222223; $i++) {
+#foreach (my $i=172930; $i < 422223; $i++) {
 		if (nondecnr($i) && hasDupes($i)) {
 			push @list, $i;
 			
@@ -20,15 +20,20 @@ foreach (my $i=172930; $i < 683082; $i++) {
 			my $sec = (sort @doubles)[-2];
 			#print "$i -> $max/$sec : @doubles\n";
 			
-			if ($sec >= 2 ){
+			if ( ($max == 3) && ($sec == 3) ) {} 
+			elsif ( ($sec == 2) || ($sec == 3) ){
+				 push @list2, $i;
+			} elsif (( $max == 2) && ($sec == 1) ) {
 				 push @list2, $i;
 			}
 		} 
 }
 
+
 #print Dumper \@list;
 print "Part 1: ".scalar @list."\n";;
 #print Dumper \@list2;
+#foreach (@list2) {print "$_\n";}
 print "Part 2: ".scalar @list2."\n";
 
 sub nondecnr {
