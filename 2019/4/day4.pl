@@ -4,21 +4,32 @@ use strict;
 use warnings;
 use Array::Utils qw(:all);
 use List::MoreUtils qw(firstidx);
-use List::Util qw( min );
+use List::Util qw( min max );
 use Data::Dumper;
 
 my @list;
+my @list2;
 # 172930-683082
 foreach (my $i=172930; $i < 683082; $i++) {
+#foreach (my $i=172930; $i < 222223; $i++) {
 		if (nondecnr($i) && hasDupes($i)) {
 			push @list, $i;
+			
+			my @doubles = hasDupes($i);
+			my $max = max @doubles;
+			my $sec = (sort @doubles)[-2];
+			#print "$i -> $max/$sec : @doubles\n";
+			
+			if ($sec >= 2 ){
+				 push @list2, $i;
+			}
 		} 
 }
 
-
 #print Dumper \@list;
-my $listsize = @list;
-print "Part 1: $listsize\n";
+print "Part 1: ".scalar @list."\n";;
+#print Dumper \@list2;
+print "Part 2: ".scalar @list2."\n";
 
 sub nondecnr {
 	my $n = shift; 		
@@ -36,17 +47,19 @@ sub nondecnr {
 
 sub hasDupes {
 	my $n = shift;
-    my @used;
+    my @used = ( 0,0,0,0,0,0,0,0,0,0 );
     return 1 if ( $n > 9999999999 );
-
-    for (my $i = 0; $i < 10; $i++) {
-        $used[$i] = 0;
-	}
 	
     while ($n) {
-        return 1 if ($used[ $n % 10 ] == 1 );
-        $used[ $n % 10 ] = 1;
+        #return 1 if ($used[ $n % 10 ] == 1 );
+		my $digit = $n % 10;
+        $used[ $digit ] = ($used[ $digit ] + 1);
         $n = int( $n / 10 );
     }
+	my $max = max @used;
+	
+	#print $max;
+	#print Dumper \@used;
+	return @used if ( $max > 1 );
     return 0;
 }
