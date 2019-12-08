@@ -25,9 +25,14 @@ while (my $kn = <$fh>) {
 }
 close $fh;
 
+my @input2 = @input;
+
 while ( @input) { 
 	my $next = shift @input;
 	my ($node, $child) = split /\)/, $next;
+	my %noch;
+	$noch{$node} = $child;
+	
 	if ( ($node ~~ @planets) ) {
 		$tree->traverse(
 			sub {
@@ -67,28 +72,59 @@ while ( @input) {
 
 my $count = 0;
 my $count2 = 0;
+my %hash;
+foreach ( @input2 ) { 
+	my ($node, $child) = split /\)/, $_;
+	$hash{$child} = $node;
+	
+}
+
+my @way;
+my $i = "SAN";
+my ($parent, $common);
+while ( 1 ) {
+	$parent = $hash{$i};
+	last if $parent eq "COM";
+	push @way, $parent;
+	$i = $parent;
+}
+
+$i = "YOU";
+while ( 1 ) {
+	$parent = $hash{$i};
+	if ( $parent ~~ @way ) {
+		$common = $parent;
+		last;
+	};
+	$i = $parent;
+}
+
+my ($san_depth, $you_depth, $common_depth);
+
 $tree->traverse(
 	sub {
 		my ($this) = @_;
-		if ($this->getNodeValue() eq "YOU") { 
-				my $YOU_depth = $this->getDepth();
-				my $YOU_index = $this->getIndex();
-		};
-		if ($this->getNodeValue() eq "SAN") { 
-			my $SAN_depth = $this->getDepth();
-			my $SAN_index = $this->getIndex();
-			};
+		if ($this->getNodeValue() eq "SAN" ){
+			print "SAN depth: ",$this->getDepth(),"\n";
+			$san_depth = $this->getDepth();
+		} elsif ($this->getNodeValue() eq "YOU" ){
+			print "YOU depth: ",$this->getDepth(),"\n";	
+			$you_depth = $this->getDepth();
+		} elsif ($this->getNodeValue() eq $common ){
+			print "Common $common depth is: ",$this->getDepth(),"\n";
+			$common_depth = $this->getDepth();
+		}
+		
 		$count += $this->getDepth();
 		$count2++
 		}
 );
 
-print "Your Index is: $YOU_index\n";
-print "Santas Index is: $SAN_index\n";
 
 
 
 print "Total Number of Orbits is (Part 1): $count\n";
+print "The total hops from YOU to SAN: ", ( $san_depth + $you_depth - 2 - 2 * $common_depth), "\n";
 $tree->DESTROY;
 
 
