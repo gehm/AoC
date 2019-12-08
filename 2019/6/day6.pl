@@ -2,11 +2,11 @@
 # AoC 2019 day 6
 
 use strict;
-use warnings;
-#no warnings 'recursion';
+#use warnings;
+no warnings 'recursion';
 use Data::Dumper;
 use Tree::Simple;
-use Data::TreeDumper;
+#use Data::TreeDumper;
 
 
 # Create Tree
@@ -61,7 +61,7 @@ while ( @input) {
 	} else {
 		push @input, $next;
 	}
-	
+
 }
 
 
@@ -70,16 +70,23 @@ my $count2 = 0;
 $tree->traverse(
 	sub {
 		my ($this) = @_;
+		if ($this->getNodeValue() eq "YOU") { 
+				my $YOU_depth = $this->getDepth();
+				my $YOU_index = $this->getIndex();
+		};
+		if ($this->getNodeValue() eq "SAN") { 
+			my $SAN_depth = $this->getDepth();
+			my $SAN_index = $this->getIndex();
+			};
 		$count += $this->getDepth();
 		$count2++
 		}
 );
 
-# print "\n";
+print "Your Index is: $YOU_index\n";
+print "Santas Index is: $SAN_index\n";
 
-# print "We have ", $tree->size() ," nodes.\n";
-# print "We have processed $count2 nodes\n";
-#print "We had ", scalar @planets, " Planets\n";
+
 
 print "Total Number of Orbits is (Part 1): $count\n";
 $tree->DESTROY;
