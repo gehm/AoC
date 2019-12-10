@@ -1,43 +1,55 @@
 #!/usr/local/bin/perl
 
-package IntComp;
 
 use strict;
 use warnings;
-use Data::Dumper;
+use threads;
+use threads::shared;
+use Thread::Queue;
+
 use List::Permutor;
 use List::Util qw( max );
 
-use lib ".";
+use lib "../lib/";
 use IntComp;
 
-open(my $fh, "<", "input.txt") or die "Ooops! No input.txt";
+my $input = "input.txt";
+open(my $fh, "<", $input ) or die "Ooops! No $input";
 my @int_prog = split(',', <$fh>);
 close $fh;
 
+# The Phases....
 
-# generate hash with all possible sequences
-# value will be final output
-my @signals;
+my @thrust;
+my $perm = new List::Permutor qw/ 5 6 7 8 9 /;
+#my @set = ( 9,6,5,9,7 );
+while (my @set = $perm->next) {	
+my $a_queue = Thread::Queue->new($set[0],0);
+my $b_queue = Thread::Queue->new($set[1]);
+my $c_queue = Thread::Queue->new($set[2]);
+my $d_queue = Thread::Queue->new($set[3]);
+my $e_queue = Thread::Queue->new($set[4]);
 
-my $perm = new List::Permutor qw/ 0 1 2 3 4 /;
-while (my @set = $perm->next) {
-	my @freshprog = @int_prog;
-    #print "Order is: @set. ";
-	
-	# Amp A
-	# First Input Pahse, 2nd 0 
-	my $amp_a = IntComp::run( $set[0], "0", \@freshprog );
-	#print $amp_a;
-	
-	my $amp_b = IntComp::run( $set[1], $amp_a, \@freshprog );
-	my $amp_c = IntComp::run( $set[2], $amp_b, \@freshprog );
-	my $amp_d = IntComp::run( $set[3], $amp_c, \@freshprog );
-	my $thruster = IntComp::run( $set[4], $amp_d, \@freshprog );
-	#print "Thrust: $thruster\n";
-	push @signals, $thruster;
-	
+my $realprog = \@int_prog;
+
+my $amp_a = threads->create(\&IntComp::run, $a_queue , $realprog, $b_queue, "A");
+my $amp_b = threads->create(\&IntComp::run, $b_queue , $realprog, $c_queue, "B");
+my $amp_c = threads->create(\&IntComp::run, $c_queue , $realprog, $d_queue, "C");
+my $amp_d = threads->create(\&IntComp::run, $d_queue , $realprog, $e_queue, "D");
+my ($amp_e) = threads->create(\&IntComp::run, $e_queue , $realprog, $a_queue, "E");
+
+$amp_a->join();
+$amp_b->join();
+$amp_c->join();
+$amp_d->join();
+
+my @value = $amp_e->join();
+print $value[0],"\n";
+push @thrust, $value[0];
 }
-my $max = max @signals;
-print "Maximum: $max \n";
+
+my $max = max @thrust;
+print "Number of Values: ", scalar @thrust, "\n";
+print "Maximum is $max\n";
+
 
