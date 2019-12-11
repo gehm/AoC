@@ -1,10 +1,9 @@
 #!/usr/local/bin/perl
+#AoC 2019 Day 8 Complete
 
 use strict;
 use warnings;
 use Data::Dumper;
-
-
 
 my $input = "input.txt";
 open(my $fh, "<", $input ) or die "Ooops! No $input";
@@ -18,16 +17,12 @@ print "Part 1: ", (count_digits( min_zero(@lines), 1 ) * count_digits( min_zero(
 print "Part 2:\n";
 my @image = make_image(@lines);
 my $pic = join("",@image);
-
-
 foreach (unpack("(A25)*", $pic)) {
 	(my $newstring = $_) =~ s/0/ /g;
 	print $newstring,"\n";
 }
 
-
 #### SUBS
-
 
 sub min_zero {
 	my @lines = @_;
