@@ -14,7 +14,7 @@ use FindBin;
 use lib "$FindBin::Bin/../lib";
 use IntComp;
 
-my $input = "input.txt";
+my $input = "$FindBin::Bin/input.txt";
 open(my $fh, "<", $input ) or die "Ooops! No $input";
 my @int_prog = split(',', <$fh>);
 close $fh;
@@ -45,12 +45,12 @@ $amp_c->join();
 $amp_d->join();
 
 my @value = $amp_e->join();
-print $value[0],"\n";
+#print $value[0],"\n";
 push @thrust, $value[0];
 }
 
 my $max = max @thrust;
-print "Number of Values: ", scalar @thrust, "\n";
+print "Number of permutations: ", scalar @thrust, "\n";
 print "Maximum is $max\n";
 
 
