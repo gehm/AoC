@@ -10,7 +10,7 @@ use threads::shared;
 my $debug = 0;
 
 sub run {
-	my ($step, $run) = 0;
+	my ($step, $run, $rel_base) = 0;
 	my $jump;
 	my @output;
 	my $diagcode;
@@ -20,6 +20,7 @@ sub run {
 	my $name = shift;
 	
 	my @int_prog = @{$pass_prog};
+	push @int_prog, "0" x 1024; 
 
 	while ( defined( $int_prog[$step] ) ) {
 		print "[DEBUG $name] ----------------- RUN $run --------------------\n" if $debug; 
@@ -30,7 +31,7 @@ sub run {
 			 return pop @output;
 			 threads->exit();
 		 }
-		$jump = int (do_magic(\@int_prog, \@opmode, \@output, $in_queue , $step ));
+		$jump = int (do_magic(\@int_prog, \@opmode, \@output, $in_queue , $step, \$rel_base ));
 		$step = $step + $jump;
 		print "[DEBUG $name] Moving pointer $jump units to position $step\n"  if $debug;
 
@@ -45,6 +46,7 @@ sub run {
 		my $errors = shift;
 		my $queue = shift;
 		my $mystep = shift;
+		my $rel_base= shift;
 		
 		#this_prog: [array_ref] working copy of input
 		#this_mode: [array_ref] 
@@ -62,14 +64,29 @@ sub run {
 			# 0 == position mode
 			# 1 == immediate mode
 			if ( $this_mode->[$i]  eq "0" ) {
-				print "[DEBUG $name] Position Mode.... Param $i comes from ",$this_prog->[($mystep + $i)], 
+				print "[DEBUG $name] Position Mode.... ",
+				      "Param $i comes from ",$this_prog->[($mystep + $i)], 
 					  " value is ",$this_prog->[( $this_prog->[($mystep + $i)] )],"\n" if $debug;
 				$params[$i] = $this_prog->[( $this_prog->[($mystep + $i)] )];	
-			} else {
-				print "[DEBUG $name] Immediate mode... Param $i comes from ",($mystep + $i),
+			
+			} elsif ( $this_mode->[$i]  eq "1" ) {
+				print "[DEBUG $name] Immediate mode... ",
+				      "Param $i comes from ",($mystep + $i),
 					  " value is ",$this_prog->[($mystep + $i)],"\n" if $debug ;
+					  
 				$params[$i] = $this_prog->[($mystep + $i)];
-			}	
+				
+			} elsif ( $this_mode->[$i]  eq "2" ) {
+				print "[DEBUG $name] Relative mode... ",
+					  "Relativ Base is $rel_base ",
+				       "Param $i comes from ",$this_prog->[($rel_base + ($mystep + $i))], 
+					  " value is ",$this_prog->[( $this_prog->[($rel_base + ($mystep + $i))] )],"\n" if $debug;
+					  
+				$params[$i] = $this_prog->[( $this_prog->[($rel_base + ($mystep + $i))] )];
+				
+			} else {
+				die "No such mode!";
+			}
 		}
 		$params[3] = $this_prog->[($mystep + 3)]; 
 		print "[DEBUG $name] Params are: " if $debug;
@@ -140,6 +157,10 @@ sub run {
 				$this_prog->[$params[3]] = 0;
 			}
 			return 4;
+		} elsif ($opcode == 9) {
+			# Adjust relative base
+			$rel_base += $params[1];
+			return 2;
 		} else {
 			die "Unknown opcode: $opcode!\n";
 		}
