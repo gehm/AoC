@@ -10,7 +10,7 @@ use Thread::Queue;
 use List::Permutor;
 use List::Util qw( max );
 
-use lib "../lib/";
+use lib "../lib";
 use IntComp;
 
 my $input = "input.txt";
