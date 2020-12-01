@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # AoC 2020 Day 1
 
 infile = open("input/day1.txt", "r")

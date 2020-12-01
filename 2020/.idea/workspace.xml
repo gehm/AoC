@@ -36,6 +36,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -129,5 +130,9 @@
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
     <state width="1696" height="403" key="GridCell.Tab.0.right/0.0.3440.1410@0.0.3440.1410" timestamp="1606848182671" />
+    <state x="472" y="311" key="SettingsEditor" timestamp="1606848876630">
+      <screen x="0" y="0" width="3440" height="1410" />
+    </state>
+    <state x="472" y="311" key="SettingsEditor/0.0.3440.1410@0.0.3440.1410" timestamp="1606848876630" />
   </component>
 </project>
