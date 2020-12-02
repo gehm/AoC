@@ -19,11 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3356ebd4-1997-496c-a91a-96d4bbb083fd" name="Default Changelist" comment="" />
+    <list default="true" id="3356ebd4-1997-496c-a91a-96d4bbb083fd" name="Default Changelist" comment="Shebang" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -38,7 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.day2">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="2020" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,8 +89,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="day2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\ekki\AppData\Local\Programs\Python\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/day2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.day2" />
         <item itemvalue="Python.day1" />
       </list>
     </recent_temporary>
@@ -109,27 +139,46 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="314" y="363" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606840575466">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
     <state x="314" y="363" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1410@0.0.3440.1410" timestamp="1606840575466" />
-    <state width="1696" height="403" key="GridCell.Tab.0.bottom" timestamp="1606848182671">
+    <state width="1362" height="403" key="GridCell.Tab.0.bottom" timestamp="1606908351344">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
-    <state width="1696" height="403" key="GridCell.Tab.0.bottom/0.0.3440.1410@0.0.3440.1410" timestamp="1606848182671" />
-    <state width="1696" height="403" key="GridCell.Tab.0.center" timestamp="1606848182671">
+    <state width="1362" height="403" key="GridCell.Tab.0.bottom/0.0.3440.1410@0.0.3440.1410" timestamp="1606908351344" />
+    <state width="1362" height="403" key="GridCell.Tab.0.center" timestamp="1606908351344">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
-    <state width="1696" height="403" key="GridCell.Tab.0.center/0.0.3440.1410@0.0.3440.1410" timestamp="1606848182671" />
-    <state width="1696" height="403" key="GridCell.Tab.0.left" timestamp="1606848182671">
+    <state width="1362" height="403" key="GridCell.Tab.0.center/0.0.3440.1410@0.0.3440.1410" timestamp="1606908351344" />
+    <state width="1362" height="403" key="GridCell.Tab.0.left" timestamp="1606908351344">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
-    <state width="1696" height="403" key="GridCell.Tab.0.left/0.0.3440.1410@0.0.3440.1410" timestamp="1606848182671" />
-    <state width="1696" height="403" key="GridCell.Tab.0.right" timestamp="1606848182671">
+    <state width="1362" height="403" key="GridCell.Tab.0.left/0.0.3440.1410@0.0.3440.1410" timestamp="1606908351344" />
+    <state width="1362" height="403" key="GridCell.Tab.0.right" timestamp="1606908351344">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
-    <state width="1696" height="403" key="GridCell.Tab.0.right/0.0.3440.1410@0.0.3440.1410" timestamp="1606848182671" />
+    <state width="1362" height="403" key="GridCell.Tab.0.right/0.0.3440.1410@0.0.3440.1410" timestamp="1606908351344" />
+    <state width="3419" height="496" key="GridCell.Tab.1.bottom" timestamp="1606849020717">
+      <screen x="0" y="0" width="3440" height="1410" />
+    </state>
+    <state width="3419" height="496" key="GridCell.Tab.1.bottom/0.0.3440.1410@0.0.3440.1410" timestamp="1606849020717" />
+    <state width="3419" height="496" key="GridCell.Tab.1.center" timestamp="1606849020717">
+      <screen x="0" y="0" width="3440" height="1410" />
+    </state>
+    <state width="3419" height="496" key="GridCell.Tab.1.center/0.0.3440.1410@0.0.3440.1410" timestamp="1606849020717" />
+    <state width="3419" height="496" key="GridCell.Tab.1.left" timestamp="1606849020717">
+      <screen x="0" y="0" width="3440" height="1410" />
+    </state>
+    <state width="3419" height="496" key="GridCell.Tab.1.left/0.0.3440.1410@0.0.3440.1410" timestamp="1606849020717" />
+    <state width="3419" height="496" key="GridCell.Tab.1.right" timestamp="1606849020717">
+      <screen x="0" y="0" width="3440" height="1410" />
+    </state>
+    <state width="3419" height="496" key="GridCell.Tab.1.right/0.0.3440.1410@0.0.3440.1410" timestamp="1606849020717" />
     <state x="472" y="311" key="SettingsEditor" timestamp="1606848876630">
       <screen x="0" y="0" width="3440" height="1410" />
     </state>
