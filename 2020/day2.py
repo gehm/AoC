@@ -9,14 +9,12 @@ line = fh.readline()
 def checkpass(pol, pwd):
     (number, string) = pol.split()
     (low, high) = number.split('-')
-
     if int(low) <= pwd.count(string) <= int(high):
         return True
 
 
 def checkpass2(pol, pwd):
     (number, string) = pol.split()
-    pwd = pwd.strip()
     (first, sec) = number.split('-')
     first = int(first) - 1
     sec = int(sec) - 1
@@ -26,9 +24,9 @@ def checkpass2(pol, pwd):
 
 while line:
     (policy, passwd) = line.split(':')
-    if checkpass(policy, passwd):
+    if checkpass(policy, passwd.strip()):
         good_pwds = good_pwds + 1
-    if checkpass2(policy, passwd):
+    if checkpass2(policy, passwd.strip()):
         good_pwds2 = good_pwds2 + 1
     line = fh.readline()
 fh.close()
