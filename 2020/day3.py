@@ -34,7 +34,7 @@ while run < len(x_step):
 prod_answer = 1
 for i in answers:
     prod_answer = prod_answer * i
-    
+
 print("Day 3 of AoC 2020")
 print("Answer Part 1: ", answers[1])
 print("Answer Part 2: ", prod_answer)
