@@ -41,6 +41,7 @@ for line in infile:
         for pair in line.split(' '):
             (field, value) = pair.split(':')
             setattr(id, field, value)
+id_batch.append(id)
 
 valid_ids = 0
 valid_miss_cid = 0
