@@ -1,26 +1,32 @@
 #!/usr/bin/env python
 # AoC 2020 Day 6
+import string
 
 with open("input/day6.txt") as fh:
     infile = fh.read().splitlines()
 fh.close()
-group_answers = []
-answers = ""
 all_answers = []
+group_answers = []
+
 
 for line in infile:
     if line == '':
-        group_answers.append(answers)
-        answers = ""
+        all_answers.append(group_answers)
+        group_answers = []
     else:
-        for i in line:
-            if i not in answers:
-                answers = answers + i
+        group_answers.append(line)    # one filed per person
 
-group_answers.append(answers)
+all_answers.append(group_answers)   # append last person
 
-count = 0
-for i in group_answers:
-    count += len(i)
+total_count = 0
 
-print(count)
+for i in all_answers:
+    count = 0
+    size = len(i)
+    for l in string.ascii_lowercase:
+        if all(l in s for s in i):
+            count += 1
+    print("Group has ", size, "members. And has ", count, " common chars.")
+    total_count += count
+
+print("We have ", len(all_answers), "groups in total. And we have a total of", total_count, "common answers.")
